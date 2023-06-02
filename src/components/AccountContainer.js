@@ -7,6 +7,11 @@ function AccountContainer() {
   const [transactions, setTransactions] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  function handleSearch(searchText) {
+    setSearchTerm(searchText);
+  }
 
   useEffect(() => {
     fetch("http://localhost:8001/transactions")
@@ -43,9 +48,9 @@ function AccountContainer() {
 
   return (
     <div>
-      <Search />
+      <Search onSearch={handleSearch} />
       <AddTransactionForm addTransaction={addTransaction} />
-      <TransactionsList transactions={transactions} />
+      <TransactionsList transactions={transactions} searchTerm={searchTerm} />
     </div>
   );
 }
