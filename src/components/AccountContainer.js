@@ -13,6 +13,20 @@ function AccountContainer() {
     setSearchTerm(searchText);
   }
 
+  const handleSortByCategory = () => {
+    setTransactions((prevTransactions) =>
+      [...prevTransactions].sort((a, b) => a.category.localeCompare(b.category))
+    );
+  };
+
+  const handleSortByDescription = () => {
+    setTransactions((prevTransactions) =>
+      [...prevTransactions].sort((a, b) =>
+        a.description.localeCompare(b.description)
+      )
+    );
+  };
+
   function deleteTransaction(transactionID) {
     const updatedTransactions = transactions.filter(
       (transaction) => transaction.id !== transactionID
@@ -61,6 +75,12 @@ function AccountContainer() {
     <div>
       <Search onSearch={handleSearch} />
       <AddTransactionForm addTransaction={addTransaction} />
+
+      <button onClick={() => handleSortByCategory()}>Sort by Category</button>
+      <button onClick={() => handleSortByDescription()}>
+        Sort by Description
+      </button>
+
       <TransactionsList
         transactions={transactions}
         searchTerm={searchTerm}
