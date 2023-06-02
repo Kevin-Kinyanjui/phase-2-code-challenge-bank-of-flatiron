@@ -18,7 +18,7 @@ function AddTransactionForm({ addTransaction }) {
   function handleFormSubmit(event) {
     event.preventDefault();
 
-    fetch("http://localhost:8000/transactions", {
+    fetch("http://localhost:8001/transactions", {
       method: "POST",
       headers: {
         "content-type": "application/json",
