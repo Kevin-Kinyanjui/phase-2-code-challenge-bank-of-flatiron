@@ -13,6 +13,17 @@ function AccountContainer() {
     setSearchTerm(searchText);
   }
 
+  function deleteTransaction(transactionID) {
+    const updatedTransactions = transactions.filter(
+      (obj) => obj.id !== objectId
+    );
+    setTransactions(updatedTransactions);
+
+    fetch(`http://localhost:8001/transactions/${transactionID}`, {
+      method: "DELETE",
+    });
+  }
+
   useEffect(() => {
     fetch("http://localhost:8001/transactions")
       .then((response) => {
@@ -50,7 +61,11 @@ function AccountContainer() {
     <div>
       <Search onSearch={handleSearch} />
       <AddTransactionForm addTransaction={addTransaction} />
-      <TransactionsList transactions={transactions} searchTerm={searchTerm} />
+      <TransactionsList
+        transactions={transactions}
+        searchTerm={searchTerm}
+        deleteTransaction={deleteTransaction}
+      />
     </div>
   );
 }
