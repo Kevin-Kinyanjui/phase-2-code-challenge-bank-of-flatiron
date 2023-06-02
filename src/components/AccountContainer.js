@@ -15,7 +15,7 @@ function AccountContainer() {
 
   function deleteTransaction(transactionID) {
     const updatedTransactions = transactions.filter(
-      (obj) => obj.id !== objectId
+      (transaction) => transaction.id !== transactionID
     );
     setTransactions(updatedTransactions);
 
